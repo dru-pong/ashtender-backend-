@@ -1,0 +1,21 @@
+# Pinned to what the test suite was actually run against.
+Django==5.1.15
+djangorestframework==3.17.2
+django-filter==25.1
+django-treebeard==4.8.0
+celery==5.6.3
+redis==8.1.0
+psycopg2-binary==2.9.12
+python-dotenv==1.2.2
+requests==2.33.1
+pillow==12.1.1
+
+# Deliberately absent:
+#
+#   jsonschema      -- llm/schema.py is ~70 lines and the schemas are shallow.
+#   django-tenants  -- schema-per-tenant makes migrations across hundreds of
+#                      small tenants painful and makes the PayerScore
+#                      cross-tenant aggregate awkward. Row-level isolation with
+#                      a guarded queryset instead (core/tenancy.py).
+#   django-environ  -- os.getenv plus four helpers in settings/base.py.
+#   numpy           -- one nearest-rank percentile over a handful of integers.
